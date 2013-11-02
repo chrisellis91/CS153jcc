@@ -1700,10 +1700,6 @@ static final long[] jjtoSkip = {
 static protected SimpleCharStream input_stream;
 static private final int[] jjrounds = new int[312];
 static private final int[] jjstateSet = new int[624];
-private static final StringBuilder jjimage = new StringBuilder();
-private static StringBuilder image = jjimage;
-private static int jjimageLen;
-private static int lengthOfMatch;
 static protected char curChar;
 /** Constructor. */
 public Proj6TokenManager(SimpleCharStream stream){
@@ -1800,9 +1796,6 @@ public static Token getNextToken()
       matchedToken = jjFillToken();
       return matchedToken;
    }
-   image = jjimage;
-   image.setLength(0);
-   jjimageLen = 0;
 
    switch(curLexState)
    {
@@ -1828,7 +1821,6 @@ public static Token getNextToken()
         if ((jjtoToken[jjmatchedKind >> 6] & (1L << (jjmatchedKind & 077))) != 0L)
         {
            matchedToken = jjFillToken();
-           TokenLexicalActions(matchedToken);
        if (jjnewLexState[jjmatchedKind] != -1)
          curLexState = jjnewLexState[jjmatchedKind];
            return matchedToken;
@@ -1863,42 +1855,6 @@ public static Token getNextToken()
   }
 }
 
-static void TokenLexicalActions(Token matchedToken)
-{
-   switch(jjmatchedKind)
-   {
-      case 8 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-        debugStream.println("RESERVED token: " + matchedToken.image);
-         break;
-      case 9 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-        debugStream.println("STRING: " + matchedToken.image);
-         break;
-      case 10 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-        debugStream.println("Special Symbol: " + matchedToken.image);
-         break;
-      case 11 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          debugStream.println("INTEGER: " + matchedToken.image);
-         break;
-      case 12 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          debugStream.println("REAL: " + matchedToken.image);
-         break;
-      case 13 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          debugStream.println("CHAR: " + matchedToken.image);
-         break;
-      case 14 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-        debugStream.println("Identifier: " + matchedToken.image);
-         break;
-      default :
-         break;
-   }
-}
 static private void jjCheckNAdd(int state)
 {
    if (jjrounds[state] != jjround)

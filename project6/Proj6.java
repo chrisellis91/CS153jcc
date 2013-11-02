@@ -6,11 +6,13 @@ import java.io.*;
 public class Proj6 implements Proj6Constants {
   public static void main(String[] args) throws java.io.FileNotFoundException
     {
+        System.out.println("Running");
         java.io.FileReader fr = new java.io.FileReader(args[0]);
         SimpleCharStream scs = new SimpleCharStream(fr);
         Proj6TokenManager mgr = new Proj6TokenManager(scs);
 
         while (mgr.getNextToken().kind != EOF) {}
+        System.out.println("Done running");
    }
 
   static final public void Assignment() throws ParseException {
