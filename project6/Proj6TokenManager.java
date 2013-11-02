@@ -2581,7 +2581,7 @@ static void TokenLexicalActions(Token matchedToken)
    {
       case 5 :
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          debugStream.println("Expression: " + matchedToken.image);
+          System.out.println("Expression: " + matchedToken.image);
          break;
       default :
          break;

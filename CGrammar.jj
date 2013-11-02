@@ -68,7 +68,19 @@ TOKEN:
 
 
 TOKEN:
-{	<EXPRESSION  : (< IDENTIFIER >) "=" (<NUMBER > )  >	{ debugStream.println("Expression: " + matchedToken.image); }
+{   
+	//Because I don't know how to get it work from a method...	<EXPRESSION  : (< IDENTIFIER >) "=" (<NUMBER > )  >	{ System.out.println("Expression: " + matchedToken.image); }
+
+
+
+	
+
+
+
+
+
+
+	
 }
 
 TOKEN : {
