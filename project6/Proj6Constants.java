@@ -13,49 +13,51 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int IGNORE = 1;
   /** RegularExpression Id. */
-  int SGL_COMMENT = 5;
+  int EXPRESSION = 5;
   /** RegularExpression Id. */
-  int COMMENT = 6;
+  int SGL_COMMENT = 6;
   /** RegularExpression Id. */
-  int MULT_COMMENT = 7;
+  int COMMENT = 7;
   /** RegularExpression Id. */
-  int RESERVED = 8;
+  int MULT_COMMENT = 8;
   /** RegularExpression Id. */
-  int STRING = 9;
+  int RESERVED = 9;
   /** RegularExpression Id. */
-  int SPECIAL_SYMBOL = 10;
+  int STRING = 10;
   /** RegularExpression Id. */
-  int INTEGER = 11;
+  int SPECIAL_SYMBOL = 11;
   /** RegularExpression Id. */
-  int REAL = 12;
+  int INTEGER = 12;
   /** RegularExpression Id. */
-  int CHAR = 13;
+  int REAL = 13;
   /** RegularExpression Id. */
-  int IDENTIFIER = 14;
+  int CHAR = 14;
   /** RegularExpression Id. */
-  int UPPER = 15;
+  int IDENTIFIER = 15;
   /** RegularExpression Id. */
-  int DIGITS = 16;
+  int NUMBER = 16;
   /** RegularExpression Id. */
-  int LOWER = 17;
+  int UPPER = 17;
   /** RegularExpression Id. */
-  int LETTER = 18;
+  int LOWER = 18;
   /** RegularExpression Id. */
-  int DIGIT = 19;
+  int LETTER = 19;
   /** RegularExpression Id. */
-  int DECIMAL = 20;
+  int DIGIT = 20;
   /** RegularExpression Id. */
-  int OCTAL = 21;
+  int DECIMAL = 21;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 22;
+  int OCTAL = 22;
   /** RegularExpression Id. */
-  int NODEC = 23;
+  int HEXIDECIMAL = 23;
   /** RegularExpression Id. */
-  int NOEXP = 24;
+  int NODEC = 24;
   /** RegularExpression Id. */
-  int BOTH = 25;
+  int NOEXP = 25;
   /** RegularExpression Id. */
-  int SPEC = 26;
+  int BOTH = 26;
+  /** RegularExpression Id. */
+  int SPEC = 27;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -69,6 +71,7 @@ public interface Proj6Constants {
     "\"/*\"",
     "\"*/\"",
     "<token of kind 4>",
+    "<EXPRESSION>",
     "<SGL_COMMENT>",
     "<COMMENT>",
     "<MULT_COMMENT>",
@@ -79,8 +82,8 @@ public interface Proj6Constants {
     "<REAL>",
     "<CHAR>",
     "<IDENTIFIER>",
+    "<NUMBER>",
     "<UPPER>",
-    "<DIGITS>",
     "<LOWER>",
     "<LETTER>",
     "<DIGIT>",

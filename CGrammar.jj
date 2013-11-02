@@ -68,7 +68,7 @@ TOKEN:
 
 
 TOKEN:
-{	<EXPRESSION  : < IDENTIFIER > <"=" > <NUMBER >   >  
+{	<EXPRESSION  : (< IDENTIFIER >) "=" (<NUMBER > )  >	{ debugStream.println("Expression: " + matchedToken.image); }
 }
 
 TOKEN : {
@@ -97,11 +97,11 @@ TOKEN : {
        // { debugStream.println("CHAR: " + matchedToken.image); }
   | < IDENTIFIER : < LETTER > ( < LETTER > | < DIGIT > | "_")* >
       //{ debugStream.println("Identifier: " + matchedToken.image); }
+  | < NUMBER : (<INTEGER> | <REAL>)+ > 
   | < #UPPER : ["A"-"Z"] >
-  |  <DIGITS : (["0"-"9"])+>
   | < #LOWER : ["a"-"z"] >
   | < #LETTER : (< UPPER > | < LOWER >) > 
-  | < DIGIT : ["0"-"9"] >
+  | < #DIGIT : ["0"-"9"] >
   | < #DECIMAL : ["1"-"9"] (< DIGIT >)* >
   | < #OCTAL : "0" (["0"-"7"])* >
   | < #HEXIDECIMAL : ("0x" | "0X") (["0"-"9"] | ["A"-"F"] | ["a"-"f"])+ >
