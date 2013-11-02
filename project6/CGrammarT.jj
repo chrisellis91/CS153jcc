@@ -58,6 +58,7 @@ SKIP :
 
 TOKEN:
 {
+  		
         <"/*">: INSIDE_COMMENT
 }
 
@@ -70,6 +71,9 @@ TOKEN:
 }
 
 TOKEN : {
+  < EXPRESSION : (<IDENTIFIER > "=" <NUMBER>) >
+  		{  System.out.println("\nSome Expression: " + matchedToken.image+"\n"); ;}	  
+  | 
   < SGL_COMMENT : "//" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " ")* ("\n" | "\r")>
   | < COMMENT : "/*" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " " )* "*/" >
 
@@ -84,7 +88,8 @@ TOKEN : {
                | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while">
       { debugStream.println("RESERVED token: " + matchedToken.image); }
   | < STRING : "\"" ( ~["\""] )* "\""  >
-      { debugStream.println("STRING: " + matchedToken.image); } 
+      { debugStream.println("STRING: " + matchedToken.image); }
+  | < NUMBER: (< REAL >|< INTEGER >) > 
   | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
       { debugStream.println("Special Symbol: " + matchedToken.image); }
   | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
@@ -114,6 +119,8 @@ TOKEN : {
         
 }
 
+
+
 void Assignment() : {/*@bgen(jjtree) Assignment */
   SimpleNode jjtn000 = new SimpleNode(JJTASSIGNMENT);
   boolean jjtc000 = true;
@@ -122,17 +129,22 @@ void Assignment() : {/*@bgen(jjtree) Assignment */
 {/*@bgen(jjtree) Assignment */
   try {
 /*@egen*/
-  {System.out.println("EXPRESSION STARTS");}
+
   <IDENTIFIER>/*@bgen(jjtree)*/
+  {
+    jjtree.closeNodeScope(jjtn000, true);
+    jjtc000 = false;
+  }
+/*@egen*/
+  {System.out.println("EXPRESSION STARTS\n\n");}/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
     }
   }
 /*@egen*/
-  //"=" {jjtThis.setImage(t.image);}
-  //Number()
-  //";"
+  
+  
   
 }
 
