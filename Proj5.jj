@@ -1,0 +1,93 @@
+options {
+    BUILD_PARSER=false;
+    IGNORE_CASE=false;
+    LOOKAHEAD=1;
+}
+
+PARSER_BEGIN(Proj5)
+  public class Proj5 {}
+PARSER_END(Proj5)
+
+TOKEN_MGR_DECLS : {
+    public static void main(String[] args) throws java.io.FileNotFoundException
+    {
+        java.io.FileReader fr = new java.io.FileReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(fr);
+        Proj5TokenManager mgr = new Proj5TokenManager(scs);
+
+        while (mgr.getNextToken().kind != EOF) {}
+    }
+}
+
+SKIP :
+{
+    <IGNORE : [" ", ",", "\r", "\n"]>     
+}
+
+
+TOKEN:
+{
+        <"/*">: INSIDE_COMMENT
+}
+
+<INSIDE_COMMENT>
+TOKEN:
+{
+        	<"*/"  > :DEFAULT
+        	
+	|       <~[]>
+}
+
+TOKEN : {
+  < SGL_COMMENT : "//" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " ")* ("\n" | "\r")>
+  | < COMMENT : "/*" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " " )* "*/" >
+
+
+  
+
+  | < MULT_COMMENT: "/*" ~[] "*/">
+  | < RESERVED : "abstract" | "default" | "goto" | "package" | "synchronized" | "assert" | "do"
+               | "if" | "private" | "this" | "boolean" | "double" | "implements" | "protected"
+               | "throw" | "break" | "else" | "import" | "public" | "throws" | "byte" | "enum"
+               | "instanceof" | "return" | "transient" | "case" | "extends" | "int" | "short"
+               | "true" | "catch" | "false" | "interface" | "static" | "try" | "char" | "final"
+               | "long" | "strictfp" | "void" | "class" | "finally" | "native" | "super" | "volatile"
+               | "const" | "float" | "new" | "switch" | "while" | "continue" | "for" | "null">
+      { debugStream.println("RESERVED token: " + matchedToken.image); }
+  | < STRING : "\"" ( ~["\""] )* "\""  >
+      { debugStream.println("STRING: " + matchedToken.image); } 
+  | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
+      { debugStream.println("Special Symbol: " + matchedToken.image); }
+  | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
+        { debugStream.println("INTEGER: " + matchedToken.image); }
+  | < REAL : (< NODEC > | < NOEXP > | < BOTH >)>
+        { debugStream.println("REAL: " + matchedToken.image); }
+  | < CHAR : ("'" (< LETTER > | "\\") "'") >
+        { debugStream.println("CHAR: " + matchedToken.image); }
+  | < IDENTIFIER : < LETTER > ( < LETTER > | < DIGIT > | "_")* >
+      { debugStream.println("Identifier: " + matchedToken.image); }
+  | < #UPPER : ["A"-"Z"] >
+  | < #LOWER : ["a"-"z"] >
+  | < #LETTER : (< UPPER > | < LOWER >) > 
+  | < #DIGIT : ["0"-"9"] >
+  | < #DECIMAL : ["1"-"9"] (< DIGIT >)* >
+  | < #OCTAL : "0" (["0"-"7"])* >
+  | < #HEXIDECIMAL : ("0x" | "0X") (["0"-"9"] | ["A"-"F"] | ["a"-"f"])+ >
+  | < #NODEC : (< INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
+  | < #NOEXP : (< INTEGER > "." < INTEGER >) >
+  | < #BOTH : (< INTEGER > "." < INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
+  | < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
+            | "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
+            | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
+            | "||" | "&&" | "!=" | "<<=" | ">>=" >
+
+        
+}
+
+/*
+void STRING() : {} 
+{
+  
+   ( <"\""> <~["\""] > )
+}*/
+
