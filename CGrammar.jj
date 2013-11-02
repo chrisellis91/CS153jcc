@@ -13,13 +13,25 @@ import java.io.*;
 
 public class Proj6
 {
-  public static void main(String[] args) throws java.io.FileNotFoundException
+  public static void main(String[] args) throws java.io.FileNotFoundException, ParseException
     {
         java.io.FileReader fr = new java.io.FileReader(args[0]);
         SimpleCharStream scs = new SimpleCharStream(fr);
         Proj6TokenManager mgr = new Proj6TokenManager(scs);
+        
 
-        while (mgr.getNextToken().kind != EOF) {}
+        while (mgr.getNextToken().kind != EOF)
+         {
+           try
+            {
+           		Proj6.Assignment();
+			}
+			catch (Exception e)
+			{
+			}
+           
+
+         }
    }
 }
 
@@ -66,13 +78,14 @@ TOKEN:
 }
 
 TOKEN : {
-  < SGL_COMMENT : "//" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " ")* ("\n" | "\r")>
-  | < COMMENT : "/*" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL > | "_" | " " )* "*/" >
+ // < SGL_COMMENT : "//" (< LETTER > | < DIGIT > |< SPECIAL_SYMBOL >| "_" | " ")* ("\n" | "\r")>
+  //|
+  // < COMMENT : "/*" (< LETTER > | < DIGIT > |/** < SPECIAL_SYMBOL >*/| "_" | " " )* "*/" >
 
 
   
 
-  | < MULT_COMMENT: "/*" ~[] "*/">
+   < MULT_COMMENT: "/*" ~[] "*/">
   | < RESERVED : "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const"
                | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern"
                | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long"
@@ -81,8 +94,8 @@ TOKEN : {
       { debugStream.println("RESERVED token: " + matchedToken.image); }
   | < STRING : "\"" ( ~["\""] )* "\""  >
       { debugStream.println("STRING: " + matchedToken.image); } 
-  | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
-      { debugStream.println("Special Symbol: " + matchedToken.image); }
+  //| < SPECIAL_SYMBOL :  < SPEC > | "\"" >
+    //  { debugStream.println("Special Symbol: " + matchedToken.image); }
   | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
         { debugStream.println("INTEGER: " + matchedToken.image); }
   | < REAL : (< NODEC > | < NOEXP > | < BOTH >)>
@@ -102,21 +115,23 @@ TOKEN : {
   | < #NODEC : (< INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
   | < #NOEXP : (< INTEGER > "." < INTEGER >) >
   | < #BOTH : (< INTEGER > "." < INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
-  | < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
+  /**| < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
             | "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
             | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
-            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" >
+            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" >*/
 
         
 }
 
-void Assignment() : {} 
+void Assignment() : {Token t;} 
 {
   {System.out.println("EXPRESSION STARTS");}
-  <IDENTIFIER>
-  //"=" {jjtThis.setImage(t.image);}
-  //Number()
-  //";"
+  
+  t= <IDENTIFIER> "=" Number() ";" 
+
+ // {jjtThis.setImage(t.image);}
+ 
+  {System.out.println("EXPRESSION ENDS");}
   
 }
 

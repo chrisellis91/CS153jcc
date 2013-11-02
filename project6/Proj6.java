@@ -4,18 +4,36 @@ package project6;
 import java.io.*;
 
 public class Proj6 implements Proj6Constants {
-  public static void main(String[] args) throws java.io.FileNotFoundException
+  public static void main(String[] args) throws java.io.FileNotFoundException, ParseException
     {
         java.io.FileReader fr = new java.io.FileReader(args[0]);
         SimpleCharStream scs = new SimpleCharStream(fr);
         Proj6TokenManager mgr = new Proj6TokenManager(scs);
 
-        while (mgr.getNextToken().kind != EOF) {}
+
+        while (mgr.getNextToken().kind != EOF)
+         {
+           try
+            {
+                        Proj6.Assignment();
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+
+
+         }
    }
 
   static final public void Assignment() throws ParseException {
+                     Token t;
    System.out.println("EXPRESSION STARTS");
-    jj_consume_token(IDENTIFIER);
+    t = jj_consume_token(IDENTIFIER);
+    jj_consume_token(23);
+    Number();
+    jj_consume_token(24);
+   System.out.println("EXPRESSION ENDS");
   }
 
   static final public void Operand() throws ParseException {
@@ -57,7 +75,7 @@ public class Proj6 implements Proj6Constants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x1800,};
+      jj_la1_0 = new int[] {0x300,};
    }
 
   /** Constructor with InputStream. */
@@ -195,7 +213,7 @@ public class Proj6 implements Proj6Constants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[27];
+    boolean[] la1tokens = new boolean[25];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -209,7 +227,7 @@ public class Proj6 implements Proj6Constants {
         }
       }
     }
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < 25; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
