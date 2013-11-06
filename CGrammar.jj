@@ -61,12 +61,16 @@ TOKEN_MGR_DECLS :
 
 SKIP :
 {
-    <IGNORE : [" ", ",", "\r", "\n"]>     
+    <IGNORE : [" ", ",", "\r", "\n"]>
+    
 }
 
 TOKEN:  //Psuedo tokens
-{	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+ >
-	 { debugStream.println("EXPRESSION: " + matchedToken.image); } 
+{	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
+	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
+  	| 
+	 <ASSIGNMENT_STATEMENT : < IDENTIFIER > "=" (<REAL >| < INTEGER > | < IDENTIFIER >)+ (";")>
+	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
 }
 
 

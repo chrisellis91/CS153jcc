@@ -15,43 +15,45 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int EXPRESSION = 2;
   /** RegularExpression Id. */
-  int MULT_COMMENT = 6;
+  int ASSIGNMENT_STATEMENT = 3;
   /** RegularExpression Id. */
-  int MATH_SYMBOL = 7;
+  int MULT_COMMENT = 7;
   /** RegularExpression Id. */
-  int RESERVED = 8;
+  int MATH_SYMBOL = 8;
   /** RegularExpression Id. */
-  int STRING = 9;
+  int RESERVED = 9;
   /** RegularExpression Id. */
-  int INTEGER = 10;
+  int STRING = 10;
   /** RegularExpression Id. */
-  int REAL = 11;
+  int INTEGER = 11;
   /** RegularExpression Id. */
-  int CHAR = 12;
+  int REAL = 12;
   /** RegularExpression Id. */
-  int IDENTIFIER = 13;
+  int CHAR = 13;
   /** RegularExpression Id. */
-  int UPPER = 14;
+  int IDENTIFIER = 14;
   /** RegularExpression Id. */
-  int DIGITS = 15;
+  int UPPER = 15;
   /** RegularExpression Id. */
-  int LOWER = 16;
+  int DIGITS = 16;
   /** RegularExpression Id. */
-  int LETTER = 17;
+  int LOWER = 17;
   /** RegularExpression Id. */
-  int DIGIT = 18;
+  int LETTER = 18;
   /** RegularExpression Id. */
-  int DECIMAL = 19;
+  int DIGIT = 19;
   /** RegularExpression Id. */
-  int OCTAL = 20;
+  int DECIMAL = 20;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 21;
+  int OCTAL = 21;
   /** RegularExpression Id. */
-  int NODEC = 22;
+  int HEXIDECIMAL = 22;
   /** RegularExpression Id. */
-  int NOEXP = 23;
+  int NODEC = 23;
   /** RegularExpression Id. */
-  int BOTH = 24;
+  int NOEXP = 24;
+  /** RegularExpression Id. */
+  int BOTH = 25;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -63,9 +65,10 @@ public interface Proj6Constants {
     "<EOF>",
     "<IGNORE>",
     "<EXPRESSION>",
+    "<ASSIGNMENT_STATEMENT>",
     "\"/*\"",
     "\"*/\"",
-    "<token of kind 5>",
+    "<token of kind 6>",
     "<MULT_COMMENT>",
     "<MATH_SYMBOL>",
     "<RESERVED>",
