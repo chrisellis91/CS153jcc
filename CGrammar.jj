@@ -22,6 +22,7 @@ public class Proj6
 
         while (mgr.getNextToken().kind != EOF)
          {
+           
            try
             {
            		Proj6.Assignment();
@@ -94,8 +95,8 @@ TOKEN : {
       { debugStream.println("RESERVED token: " + matchedToken.image); }
   | < STRING : "\"" ( ~["\""] )* "\""  >
       { debugStream.println("STRING: " + matchedToken.image); } 
-  | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
-      { debugStream.println("Special Symbol: " + matchedToken.image); }
+ // | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
+   //   { debugStream.println("Special Symbol: " + matchedToken.image); }
   | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
         { debugStream.println("INTEGER: " + matchedToken.image); }
   | < REAL : (< NODEC > | < NOEXP > | < BOTH >)>
@@ -115,25 +116,19 @@ TOKEN : {
   | < #NODEC : (< INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
   | < #NOEXP : (< INTEGER > "." < INTEGER >) >
   | < #BOTH : (< INTEGER > "." < INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
-  | < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
+  /**| < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
             | "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
             | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
-            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" >
+            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" > **/
 
         
 }
 
 void Assignment() : {} 
 {
-  //{System.out.println("EXPRESSION STARTS");}
-   Number() 
-  //<IDENTIFIER> "=" Number() ";"
-  {System.out.println("Parsed an assignment");}
+ Number() ("+" Number())*
+    { System.out.println("Parsed expression"); }
   
-
- // {jjtThis.setImage(t.image);}
- 
-  //{System.out.println("EXPRESSION ENDS");}
   
 }
 
@@ -148,8 +143,7 @@ void Operand() : {Token t;}
 
 void Number() : {}
 {
-	LOOKAHEAD(3)
-	<INTEGER> 
-	{System.out.println("Number");}
+	
+	<DIGIT>
 	 
 }
