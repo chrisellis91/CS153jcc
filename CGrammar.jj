@@ -63,7 +63,6 @@ SKIP :
 {
     <IGNORE : [" ", ",", "\r", "\n" ]>
     | "#" : PREPROCESSOR_OUTPUT
-    | <SPECIAL_SYMBOL>
     | <"//" (~["\n"])* "\n"|"\r"> //Single line comments
 }
 
@@ -100,16 +99,14 @@ TOKEN:
 }
 
 TOKEN : {
- 	<ASSIGNMENT_STATEMENT : < IDENTIFIER > "=" (< EXPRESSION > | < INTEGER >| < REAL > ) +";">
+ 	<ASSIGNMENT_STATEMENT : < IDENTIFIER > <SPEC_EQUALS> (< EXPRESSION > | < INTEGER >| < REAL > ) +";">
 	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
 	| 
 	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
 	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
-	| 
-  
-
-   < MULT_COMMENT: "/*" ~[] "*/">
- | < MATH_SYMBOL : "+" | "-" | "*" | "//" >
+  |  
+    < MULT_COMMENT: "/*" ~[] "*/">
+  | < MATH_SYMBOL : "+" | "-" | "*" | "//" >
   | < RESERVED : "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const"
                | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern"
                | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long"
@@ -118,8 +115,6 @@ TOKEN : {
       { debugStream.println("RESERVED token: " + matchedToken.image); }
   | < STRING : "\"" ( ~["\""] )* "\""  >
       { debugStream.println("STRING: " + matchedToken.image); } 
-  | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
-      { debugStream.println("Special Symbol: " + matchedToken.image); }
   | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
         { debugStream.println("INTEGER: " + matchedToken.image); }
   | < REAL : (< NODEC > | < NOEXP > | < BOTH >)>
@@ -139,12 +134,67 @@ TOKEN : {
   | < #NODEC : (< INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
   | < #NOEXP : (< INTEGER > "." < INTEGER >) >
   | < #BOTH : (< INTEGER > "." < INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
-  | < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
-            | "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
-            | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
-            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" > 
+  
+  | <SPEC_CYDILLA : "~" >
+  | <SPEC_EXCLAMATION : "!" >
+  | <SPEC_AT : "@" >
+  | <SPEC_PERCENT : "%" >
+  | <SPEC_CARROT : "^" >
+  | <SPEC_AMPERSAND : "&" >
+  | <SPEC_MINUS : "-" >
+  | <SPEC_PLUS :"+" >
+  | <SPEC_EQUALS : "=" >
+  | < SPEC_BAR : "|" >
+  | <SPEC_SLASH: "/" >
+  | <SPEC_COLON: ":" >
+  | <SPEC_SEMICOLON : ";" >
+  | <SPEC_ASTERIX: "*" >
+  | <SPEC_QUESTION: "?" >
+  | <SPEC_LESSTHAN: "<" >
+  | <SPEC_GREATERTHAN: ">" >
+  | < SPEC_DOT: "." >
+  | < SPEC_COMMA: "," >
+  | < SPEC_SQUOTE: "'" >
+  | < SPEC_LPAREN: "(" >
+  | < SPEC_RPAREN: ")" >
+  | < SPEC_LBRACKET: "[" >
+  | < SPEC_RBRACKET: "]" >
+  | < SPEC_lCURLY: "{" >
+  | < SPEC_RCURLY: "}" >
+  | < SPEC_DOUBLEPLUS: "++" >
+  | < SPEC_DOUBLEMINUS: "--" >
+  | < SPEC_SHIFTLEFT: "<<" >
+  | < SPEC_SHIFTRIGHT: " >>" >
+  | < SPEC_lOE: "<=" >
+  | < SPEC_GOE: ">=" >
+  | < SPEC_PLUSEQUALS: "+=" >
+  | < SPEC_MINUSEQUALS: "-=" >
+  | < SPEC_MULTEQUALS: "*=" >
+  | < SPEC_DIVIDEEQUALS: "/=" >
+  | < SPEC_EQUALEQUALS: "==" >
+  | < SPEC_BAREQUALS: "|=" >
+  | < SPEC_PERCENTEQUALS: "%=" >
+  | < SPEC_AMPERSANDEQUALS: "&=" >
+  | < SPEC_CARROTEQUALS: "^=" >
+  | < SPEC_OREQUALS: "||" >
+  | < SPEC_ANDEQUALS: "&&" >
+  | < SPEC_NOTEQUAL: "!=" >
+  | < SPEC_SHIFTLEFTEQUALS: "<<=" >
+  | < SPEC_SHIFTRIGHTEQUALS: ">>=" >
+  //| < SPEC_POUND: "#" >
+  | < SPEC_QUOTE: "\"" >
+  
 
-        
+
+
+
+        /**| < #SPEC : //"~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
+            |// "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
+            | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
+            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" > **/
+
+		/**| < SPECIAL_SYMBOL :  < SPEC > | "\"" >
+      		{ debugStream.println("Special Symbol: " + matchedToken.image); }*/
 }
 
 void Assignment() : {} 

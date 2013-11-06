@@ -32,14 +32,14 @@ public class Proj6 implements Proj6Constants {
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 34:
+      case SPEC_PLUS:
         ;
         break;
       default:
         jj_la1[0] = jj_gen;
         break label_1;
       }
-      jj_consume_token(34);
+      jj_consume_token(SPEC_PLUS);
       Number();
     }
       System.out.println("Parsed expression");
@@ -68,15 +68,20 @@ public class Proj6 implements Proj6Constants {
   static final private int[] jj_la1 = new int[1];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
+  static private int[] jj_la1_2;
   static {
       jj_la1_init_0();
       jj_la1_init_1();
+      jj_la1_init_2();
    }
    private static void jj_la1_init_0() {
       jj_la1_0 = new int[] {0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x4,};
+      jj_la1_1 = new int[] {0x80,};
+   }
+   private static void jj_la1_init_2() {
+      jj_la1_2 = new int[] {0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -214,7 +219,7 @@ public class Proj6 implements Proj6Constants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[35];
+    boolean[] la1tokens = new boolean[79];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -228,10 +233,13 @@ public class Proj6 implements Proj6Constants {
           if ((jj_la1_1[i] & (1<<j)) != 0) {
             la1tokens[32+j] = true;
           }
+          if ((jj_la1_2[i] & (1<<j)) != 0) {
+            la1tokens[64+j] = true;
+          }
         }
       }
     }
-    for (int i = 0; i < 35; i++) {
+    for (int i = 0; i < 79; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

@@ -25,39 +25,129 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int STRING = 16;
   /** RegularExpression Id. */
-  int SPECIAL_SYMBOL = 17;
+  int INTEGER = 17;
   /** RegularExpression Id. */
-  int INTEGER = 18;
+  int REAL = 18;
   /** RegularExpression Id. */
-  int REAL = 19;
+  int CHAR = 19;
   /** RegularExpression Id. */
-  int CHAR = 20;
+  int IDENTIFIER = 20;
   /** RegularExpression Id. */
-  int IDENTIFIER = 21;
+  int UPPER = 21;
   /** RegularExpression Id. */
-  int UPPER = 22;
+  int DIGITS = 22;
   /** RegularExpression Id. */
-  int DIGITS = 23;
+  int LOWER = 23;
   /** RegularExpression Id. */
-  int LOWER = 24;
+  int LETTER = 24;
   /** RegularExpression Id. */
-  int LETTER = 25;
+  int DIGIT = 25;
   /** RegularExpression Id. */
-  int DIGIT = 26;
+  int DECIMAL = 26;
   /** RegularExpression Id. */
-  int DECIMAL = 27;
+  int OCTAL = 27;
   /** RegularExpression Id. */
-  int OCTAL = 28;
+  int HEXIDECIMAL = 28;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 29;
+  int NODEC = 29;
   /** RegularExpression Id. */
-  int NODEC = 30;
+  int NOEXP = 30;
   /** RegularExpression Id. */
-  int NOEXP = 31;
+  int BOTH = 31;
   /** RegularExpression Id. */
-  int BOTH = 32;
+  int SPEC_CYDILLA = 32;
   /** RegularExpression Id. */
-  int SPEC = 33;
+  int SPEC_EXCLAMATION = 33;
+  /** RegularExpression Id. */
+  int SPEC_AT = 34;
+  /** RegularExpression Id. */
+  int SPEC_PERCENT = 35;
+  /** RegularExpression Id. */
+  int SPEC_CARROT = 36;
+  /** RegularExpression Id. */
+  int SPEC_AMPERSAND = 37;
+  /** RegularExpression Id. */
+  int SPEC_MINUS = 38;
+  /** RegularExpression Id. */
+  int SPEC_PLUS = 39;
+  /** RegularExpression Id. */
+  int SPEC_EQUALS = 40;
+  /** RegularExpression Id. */
+  int SPEC_BAR = 41;
+  /** RegularExpression Id. */
+  int SPEC_SLASH = 42;
+  /** RegularExpression Id. */
+  int SPEC_COLON = 43;
+  /** RegularExpression Id. */
+  int SPEC_SEMICOLON = 44;
+  /** RegularExpression Id. */
+  int SPEC_ASTERIX = 45;
+  /** RegularExpression Id. */
+  int SPEC_QUESTION = 46;
+  /** RegularExpression Id. */
+  int SPEC_LESSTHAN = 47;
+  /** RegularExpression Id. */
+  int SPEC_GREATERTHAN = 48;
+  /** RegularExpression Id. */
+  int SPEC_DOT = 49;
+  /** RegularExpression Id. */
+  int SPEC_COMMA = 50;
+  /** RegularExpression Id. */
+  int SPEC_SQUOTE = 51;
+  /** RegularExpression Id. */
+  int SPEC_LPAREN = 52;
+  /** RegularExpression Id. */
+  int SPEC_RPAREN = 53;
+  /** RegularExpression Id. */
+  int SPEC_LBRACKET = 54;
+  /** RegularExpression Id. */
+  int SPEC_RBRACKET = 55;
+  /** RegularExpression Id. */
+  int SPEC_lCURLY = 56;
+  /** RegularExpression Id. */
+  int SPEC_RCURLY = 57;
+  /** RegularExpression Id. */
+  int SPEC_DOUBLEPLUS = 58;
+  /** RegularExpression Id. */
+  int SPEC_DOUBLEMINUS = 59;
+  /** RegularExpression Id. */
+  int SPEC_SHIFTLEFT = 60;
+  /** RegularExpression Id. */
+  int SPEC_SHIFTRIGHT = 61;
+  /** RegularExpression Id. */
+  int SPEC_lOE = 62;
+  /** RegularExpression Id. */
+  int SPEC_GOE = 63;
+  /** RegularExpression Id. */
+  int SPEC_PLUSEQUALS = 64;
+  /** RegularExpression Id. */
+  int SPEC_MINUSEQUALS = 65;
+  /** RegularExpression Id. */
+  int SPEC_MULTEQUALS = 66;
+  /** RegularExpression Id. */
+  int SPEC_DIVIDEEQUALS = 67;
+  /** RegularExpression Id. */
+  int SPEC_EQUALEQUALS = 68;
+  /** RegularExpression Id. */
+  int SPEC_BAREQUALS = 69;
+  /** RegularExpression Id. */
+  int SPEC_PERCENTEQUALS = 70;
+  /** RegularExpression Id. */
+  int SPEC_AMPERSANDEQUALS = 71;
+  /** RegularExpression Id. */
+  int SPEC_CARROTEQUALS = 72;
+  /** RegularExpression Id. */
+  int SPEC_OREQUALS = 73;
+  /** RegularExpression Id. */
+  int SPEC_ANDEQUALS = 74;
+  /** RegularExpression Id. */
+  int SPEC_NOTEQUAL = 75;
+  /** RegularExpression Id. */
+  int SPEC_SHIFTLEFTEQUALS = 76;
+  /** RegularExpression Id. */
+  int SPEC_SHIFTRIGHTEQUALS = 77;
+  /** RegularExpression Id. */
+  int SPEC_QUOTE = 78;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -85,7 +175,6 @@ public interface Proj6Constants {
     "<MATH_SYMBOL>",
     "<RESERVED>",
     "<STRING>",
-    "<SPECIAL_SYMBOL>",
     "<INTEGER>",
     "<REAL>",
     "<CHAR>",
@@ -101,8 +190,53 @@ public interface Proj6Constants {
     "<NODEC>",
     "<NOEXP>",
     "<BOTH>",
-    "<SPEC>",
+    "\"~\"",
+    "\"!\"",
+    "\"@\"",
+    "\"%\"",
+    "\"^\"",
+    "\"&\"",
+    "\"-\"",
     "\"+\"",
+    "\"=\"",
+    "\"|\"",
+    "\"/\"",
+    "\":\"",
+    "\";\"",
+    "\"*\"",
+    "\"?\"",
+    "\"<\"",
+    "\">\"",
+    "\".\"",
+    "\",\"",
+    "\"\\\'\"",
+    "\"(\"",
+    "\")\"",
+    "\"[\"",
+    "\"]\"",
+    "\"{\"",
+    "\"}\"",
+    "\"++\"",
+    "\"--\"",
+    "\"<<\"",
+    "\" >>\"",
+    "\"<=\"",
+    "\">=\"",
+    "\"+=\"",
+    "\"-=\"",
+    "\"*=\"",
+    "\"/=\"",
+    "\"==\"",
+    "\"|=\"",
+    "\"%=\"",
+    "\"&=\"",
+    "\"^=\"",
+    "\"||\"",
+    "\"&&\"",
+    "\"!=\"",
+    "\"<<=\"",
+    "\">>=\"",
+    "\"\\\"\"",
   };
 
 }
