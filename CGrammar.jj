@@ -62,16 +62,25 @@ TOKEN_MGR_DECLS :
 SKIP :
 {
     <IGNORE : [" ", ",", "\r", "\n"]>
-    
+    | "#" : PREPROCESSOR_OUTPUT
 }
 
-TOKEN:  //Psuedo tokens
-{	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
-	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
-  	| 
-	 <ASSIGNMENT_STATEMENT : < IDENTIFIER > "=" (<REAL >| < INTEGER > | < IDENTIFIER >)+ (";")>
-	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
+<PREPROCESSOR_OUTPUT> SKIP:
+{
+     "\n" : DEFAULT
 }
+
+<PREPROCESSOR_OUTPUT> MORE:
+{
+ 	"\\\n"
+	 |
+ 	"\\\r\n"
+ 	|
+	 < ~[] >
+}
+    
+
+
 
 
 
@@ -89,11 +98,17 @@ TOKEN:
 }
 
 TOKEN : {
- // < SGL_COMMENT : "//" (< LETTER > | < DIGIT > |< SPECIAL_SYMBOL >| "_" | " ")* ("\n" | "\r")>
-  //|
-  // < COMMENT : "/*" (< LETTER > | < DIGIT > |/** < SPECIAL_SYMBOL >*/| "_" | " " )* "*/" >
+  	< SGL_COMMENT : "//" (< LETTER > | < DIGIT > |< SPECIAL_SYMBOL >| "_" | " ")* ("\n" | "\r")>
+  	|
+   	< COMMENT : "/*" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL >| "_" | " " )* "*/" >
 
-
+	| 
+ 	<ASSIGNMENT_STATEMENT : < IDENTIFIER > "=" (< EXPRESSION > | < INTEGER >| < REAL > ) +";">
+	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
+	| 
+	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
+	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
+	| 
   
 
    < MULT_COMMENT: "/*" ~[] "*/">
@@ -106,8 +121,8 @@ TOKEN : {
       { debugStream.println("RESERVED token: " + matchedToken.image); }
   | < STRING : "\"" ( ~["\""] )* "\""  >
       { debugStream.println("STRING: " + matchedToken.image); } 
- // | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
-   //   { debugStream.println("Special Symbol: " + matchedToken.image); }
+  | < SPECIAL_SYMBOL :  < SPEC > | "\"" >
+      { debugStream.println("Special Symbol: " + matchedToken.image); }
   | < INTEGER : (< DECIMAL > | < OCTAL > | < HEXIDECIMAL >) >
         { debugStream.println("INTEGER: " + matchedToken.image); }
   | < REAL : (< NODEC > | < NOEXP > | < BOTH >)>
@@ -127,10 +142,10 @@ TOKEN : {
   | < #NODEC : (< INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
   | < #NOEXP : (< INTEGER > "." < INTEGER >) >
   | < #BOTH : (< INTEGER > "." < INTEGER > ("e" | "E") ("+" | "-")? < INTEGER >) >
-  /**| < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
+  | < #SPEC : "~" | "!" | "@" | "%" | "^" | "&" | "-" | "+" | "=" | "|" | "/" | ":" | ";" | "*"
             | "?" | "<" | ">" | "." | "," | "'" | "(" | ")" | "[" | "]" | "}" | "{" | "++" | "--"
             | "<<" | ">>" | "<=" | ">=" | "+=" | "-=" | "*= /=" | "==" | "|=" | "%=" | "&=" | "^="
-            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" > **/
+            | "||" | "&&" | "!=" | "<<=" | ">>="| "#" > 
 
         
 }

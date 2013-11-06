@@ -13,66 +13,84 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int IGNORE = 1;
   /** RegularExpression Id. */
-  int EXPRESSION = 2;
+  int SGL_COMMENT = 10;
   /** RegularExpression Id. */
-  int ASSIGNMENT_STATEMENT = 3;
+  int COMMENT = 11;
   /** RegularExpression Id. */
-  int MULT_COMMENT = 7;
+  int ASSIGNMENT_STATEMENT = 12;
   /** RegularExpression Id. */
-  int MATH_SYMBOL = 8;
+  int EXPRESSION = 13;
   /** RegularExpression Id. */
-  int RESERVED = 9;
+  int MULT_COMMENT = 14;
   /** RegularExpression Id. */
-  int STRING = 10;
+  int MATH_SYMBOL = 15;
   /** RegularExpression Id. */
-  int INTEGER = 11;
+  int RESERVED = 16;
   /** RegularExpression Id. */
-  int REAL = 12;
+  int STRING = 17;
   /** RegularExpression Id. */
-  int CHAR = 13;
+  int SPECIAL_SYMBOL = 18;
   /** RegularExpression Id. */
-  int IDENTIFIER = 14;
+  int INTEGER = 19;
   /** RegularExpression Id. */
-  int UPPER = 15;
+  int REAL = 20;
   /** RegularExpression Id. */
-  int DIGITS = 16;
+  int CHAR = 21;
   /** RegularExpression Id. */
-  int LOWER = 17;
+  int IDENTIFIER = 22;
   /** RegularExpression Id. */
-  int LETTER = 18;
+  int UPPER = 23;
   /** RegularExpression Id. */
-  int DIGIT = 19;
+  int DIGITS = 24;
   /** RegularExpression Id. */
-  int DECIMAL = 20;
+  int LOWER = 25;
   /** RegularExpression Id. */
-  int OCTAL = 21;
+  int LETTER = 26;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 22;
+  int DIGIT = 27;
   /** RegularExpression Id. */
-  int NODEC = 23;
+  int DECIMAL = 28;
   /** RegularExpression Id. */
-  int NOEXP = 24;
+  int OCTAL = 29;
   /** RegularExpression Id. */
-  int BOTH = 25;
+  int HEXIDECIMAL = 30;
+  /** RegularExpression Id. */
+  int NODEC = 31;
+  /** RegularExpression Id. */
+  int NOEXP = 32;
+  /** RegularExpression Id. */
+  int BOTH = 33;
+  /** RegularExpression Id. */
+  int SPEC = 34;
 
   /** Lexical state. */
   int DEFAULT = 0;
   /** Lexical state. */
-  int INSIDE_COMMENT = 1;
+  int PREPROCESSOR_OUTPUT = 1;
+  /** Lexical state. */
+  int INSIDE_COMMENT = 2;
 
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
     "<IGNORE>",
-    "<EXPRESSION>",
-    "<ASSIGNMENT_STATEMENT>",
+    "\"#\"",
+    "\"\\n\"",
+    "\"\\\\\\n\"",
+    "\"\\\\\\r\\n\"",
+    "<token of kind 6>",
     "\"/*\"",
     "\"*/\"",
-    "<token of kind 6>",
+    "<token of kind 9>",
+    "<SGL_COMMENT>",
+    "<COMMENT>",
+    "<ASSIGNMENT_STATEMENT>",
+    "<EXPRESSION>",
     "<MULT_COMMENT>",
     "<MATH_SYMBOL>",
     "<RESERVED>",
     "<STRING>",
+    "<SPECIAL_SYMBOL>",
     "<INTEGER>",
     "<REAL>",
     "<CHAR>",
@@ -88,6 +106,7 @@ public interface Proj6Constants {
     "<NODEC>",
     "<NOEXP>",
     "<BOTH>",
+    "<SPEC>",
     "\"+\"",
   };
 
