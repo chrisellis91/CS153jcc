@@ -99,14 +99,14 @@ TOKEN:
 }
 
 TOKEN : {
- 	<ASSIGNMENT_STATEMENT : < IDENTIFIER > <SPEC_EQUALS> (< EXPRESSION > | < INTEGER >| < REAL > ) +";">
+ 	<ASSIGNMENT_STATEMENT : < IDENTIFIER > <SPEC_EQUALS> (< EXPRESSION > |  (< INTEGER >| < REAL > ";"))   +>
 	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
 	| 
 	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
 	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
   |  
     < MULT_COMMENT: "/*" ~[] "*/">
-  | < MATH_SYMBOL : "+" | "-" | "*" | "//" >
+  | < MATH_SYMBOL : < SPEC_PLUS > | < SPEC_MINUS > | < SPEC_ASTERIX > | < SPEC_SLASH > >
   | < RESERVED : "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const"
                | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern"
                | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long"
