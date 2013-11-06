@@ -61,8 +61,10 @@ TOKEN_MGR_DECLS :
 
 SKIP :
 {
-    <IGNORE : [" ", ",", "\r", "\n"]>
+    <IGNORE : [" ", ",", "\r", "\n" ]>
     | "#" : PREPROCESSOR_OUTPUT
+    | <SPECIAL_SYMBOL>
+    | <"//" (~["\n"])* "\n"|"\r"> //Single line comments
 }
 
 <PREPROCESSOR_OUTPUT> SKIP:
@@ -98,11 +100,6 @@ TOKEN:
 }
 
 TOKEN : {
-  	< SGL_COMMENT : "//" (< LETTER > | < DIGIT > |< SPECIAL_SYMBOL >| "_" | " ")* ("\n" | "\r")>
-  	|
-   	< COMMENT : "/*" (< LETTER > | < DIGIT > | < SPECIAL_SYMBOL >| "_" | " " )* "*/" >
-
-	| 
  	<ASSIGNMENT_STATEMENT : < IDENTIFIER > "=" (< EXPRESSION > | < INTEGER >| < REAL > ) +";">
 	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
 	| 

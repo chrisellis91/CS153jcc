@@ -13,55 +13,51 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int IGNORE = 1;
   /** RegularExpression Id. */
-  int SGL_COMMENT = 10;
+  int ASSIGNMENT_STATEMENT = 11;
   /** RegularExpression Id. */
-  int COMMENT = 11;
+  int EXPRESSION = 12;
   /** RegularExpression Id. */
-  int ASSIGNMENT_STATEMENT = 12;
+  int MULT_COMMENT = 13;
   /** RegularExpression Id. */
-  int EXPRESSION = 13;
+  int MATH_SYMBOL = 14;
   /** RegularExpression Id. */
-  int MULT_COMMENT = 14;
+  int RESERVED = 15;
   /** RegularExpression Id. */
-  int MATH_SYMBOL = 15;
+  int STRING = 16;
   /** RegularExpression Id. */
-  int RESERVED = 16;
+  int SPECIAL_SYMBOL = 17;
   /** RegularExpression Id. */
-  int STRING = 17;
+  int INTEGER = 18;
   /** RegularExpression Id. */
-  int SPECIAL_SYMBOL = 18;
+  int REAL = 19;
   /** RegularExpression Id. */
-  int INTEGER = 19;
+  int CHAR = 20;
   /** RegularExpression Id. */
-  int REAL = 20;
+  int IDENTIFIER = 21;
   /** RegularExpression Id. */
-  int CHAR = 21;
+  int UPPER = 22;
   /** RegularExpression Id. */
-  int IDENTIFIER = 22;
+  int DIGITS = 23;
   /** RegularExpression Id. */
-  int UPPER = 23;
+  int LOWER = 24;
   /** RegularExpression Id. */
-  int DIGITS = 24;
+  int LETTER = 25;
   /** RegularExpression Id. */
-  int LOWER = 25;
+  int DIGIT = 26;
   /** RegularExpression Id. */
-  int LETTER = 26;
+  int DECIMAL = 27;
   /** RegularExpression Id. */
-  int DIGIT = 27;
+  int OCTAL = 28;
   /** RegularExpression Id. */
-  int DECIMAL = 28;
+  int HEXIDECIMAL = 29;
   /** RegularExpression Id. */
-  int OCTAL = 29;
+  int NODEC = 30;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 30;
+  int NOEXP = 31;
   /** RegularExpression Id. */
-  int NODEC = 31;
+  int BOTH = 32;
   /** RegularExpression Id. */
-  int NOEXP = 32;
-  /** RegularExpression Id. */
-  int BOTH = 33;
-  /** RegularExpression Id. */
-  int SPEC = 34;
+  int SPEC = 33;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -75,15 +71,14 @@ public interface Proj6Constants {
     "<EOF>",
     "<IGNORE>",
     "\"#\"",
+    "<token of kind 3>",
     "\"\\n\"",
     "\"\\\\\\n\"",
     "\"\\\\\\r\\n\"",
-    "<token of kind 6>",
+    "<token of kind 7>",
     "\"/*\"",
     "\"*/\"",
-    "<token of kind 9>",
-    "<SGL_COMMENT>",
-    "<COMMENT>",
+    "<token of kind 10>",
     "<ASSIGNMENT_STATEMENT>",
     "<EXPRESSION>",
     "<MULT_COMMENT>",
