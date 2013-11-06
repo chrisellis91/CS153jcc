@@ -71,83 +71,83 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int SPEC_PLUS = 39;
   /** RegularExpression Id. */
-  int SPEC_EQUALS = 40;
+  int SPEC_BAR = 40;
   /** RegularExpression Id. */
-  int SPEC_BAR = 41;
+  int SPEC_SLASH = 41;
   /** RegularExpression Id. */
-  int SPEC_SLASH = 42;
+  int SPEC_COLON = 42;
   /** RegularExpression Id. */
-  int SPEC_COLON = 43;
+  int SPEC_SEMICOLON = 43;
   /** RegularExpression Id. */
-  int SPEC_SEMICOLON = 44;
+  int SPEC_ASTERIX = 44;
   /** RegularExpression Id. */
-  int SPEC_ASTERIX = 45;
+  int SPEC_QUESTION = 45;
   /** RegularExpression Id. */
-  int SPEC_QUESTION = 46;
+  int SPEC_LESSTHAN = 46;
   /** RegularExpression Id. */
-  int SPEC_LESSTHAN = 47;
+  int SPEC_GREATERTHAN = 47;
   /** RegularExpression Id. */
-  int SPEC_GREATERTHAN = 48;
+  int SPEC_DOT = 48;
   /** RegularExpression Id. */
-  int SPEC_DOT = 49;
+  int SPEC_COMMA = 49;
   /** RegularExpression Id. */
-  int SPEC_COMMA = 50;
+  int SPEC_SQUOTE = 50;
   /** RegularExpression Id. */
-  int SPEC_SQUOTE = 51;
+  int SPEC_LPAREN = 51;
   /** RegularExpression Id. */
-  int SPEC_LPAREN = 52;
+  int SPEC_RPAREN = 52;
   /** RegularExpression Id. */
-  int SPEC_RPAREN = 53;
+  int SPEC_LBRACKET = 53;
   /** RegularExpression Id. */
-  int SPEC_LBRACKET = 54;
+  int SPEC_RBRACKET = 54;
   /** RegularExpression Id. */
-  int SPEC_RBRACKET = 55;
+  int SPEC_lCURLY = 55;
   /** RegularExpression Id. */
-  int SPEC_lCURLY = 56;
+  int SPEC_RCURLY = 56;
   /** RegularExpression Id. */
-  int SPEC_RCURLY = 57;
+  int SPEC_DOUBLEPLUS = 57;
   /** RegularExpression Id. */
-  int SPEC_DOUBLEPLUS = 58;
+  int SPEC_DOUBLEMINUS = 58;
   /** RegularExpression Id. */
-  int SPEC_DOUBLEMINUS = 59;
+  int SPEC_SHIFTLEFT = 59;
   /** RegularExpression Id. */
-  int SPEC_SHIFTLEFT = 60;
+  int SPEC_SHIFTRIGHT = 60;
   /** RegularExpression Id. */
-  int SPEC_SHIFTRIGHT = 61;
+  int SPEC_lOE = 61;
   /** RegularExpression Id. */
-  int SPEC_lOE = 62;
+  int SPEC_GOE = 62;
   /** RegularExpression Id. */
-  int SPEC_GOE = 63;
+  int SPEC_PLUSEQUALS = 63;
   /** RegularExpression Id. */
-  int SPEC_PLUSEQUALS = 64;
+  int SPEC_MINUSEQUALS = 64;
   /** RegularExpression Id. */
-  int SPEC_MINUSEQUALS = 65;
+  int SPEC_MULTEQUALS = 65;
   /** RegularExpression Id. */
-  int SPEC_MULTEQUALS = 66;
+  int SPEC_DIVIDEEQUALS = 66;
   /** RegularExpression Id. */
-  int SPEC_DIVIDEEQUALS = 67;
+  int SPEC_EQUALEQUALS = 67;
   /** RegularExpression Id. */
-  int SPEC_EQUALEQUALS = 68;
+  int SPEC_BAREQUALS = 68;
   /** RegularExpression Id. */
-  int SPEC_BAREQUALS = 69;
+  int SPEC_PERCENTEQUALS = 69;
   /** RegularExpression Id. */
-  int SPEC_PERCENTEQUALS = 70;
+  int SPEC_AMPERSANDEQUALS = 70;
   /** RegularExpression Id. */
-  int SPEC_AMPERSANDEQUALS = 71;
+  int SPEC_CARROTEQUALS = 71;
   /** RegularExpression Id. */
-  int SPEC_CARROTEQUALS = 72;
+  int SPEC_OREQUALS = 72;
   /** RegularExpression Id. */
-  int SPEC_OREQUALS = 73;
+  int SPEC_ANDEQUALS = 73;
   /** RegularExpression Id. */
-  int SPEC_ANDEQUALS = 74;
+  int SPEC_NOTEQUAL = 74;
   /** RegularExpression Id. */
-  int SPEC_NOTEQUAL = 75;
+  int SPEC_SHIFTLEFTEQUALS = 75;
   /** RegularExpression Id. */
-  int SPEC_SHIFTLEFTEQUALS = 76;
+  int SPEC_SHIFTRIGHTEQUALS = 76;
   /** RegularExpression Id. */
-  int SPEC_SHIFTRIGHTEQUALS = 77;
+  int SPEC_QUOTE = 77;
   /** RegularExpression Id. */
-  int SPEC_QUOTE = 78;
+  int SPEC_EQUALS = 78;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -198,7 +198,6 @@ public interface Proj6Constants {
     "\"&\"",
     "\"-\"",
     "\"+\"",
-    "\"=\"",
     "\"|\"",
     "\"/\"",
     "\":\"",
@@ -237,6 +236,7 @@ public interface Proj6Constants {
     "\"<<=\"",
     "\">>=\"",
     "\"\\\"\"",
+    "\"=\"",
   };
 
 }

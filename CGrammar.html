@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>BNF for CGrammar.jj </TITLE>
+</HEAD>
+<BODY>
+<H1 ALIGN=CENTER>BNF for CGrammar.jj </H1>
+<H2 ALIGN=CENTER>TOKENS</H2>
+<TABLE>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; SKIP : {
+&lt;IGNORE: [" ",",","\r","\n"]&gt;
+| "#" : PREPROCESSOR_OUTPUT
+| &lt;"//" (~["\n"])* "\n" | "\r"&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;PREPROCESSOR_OUTPUT&gt; SKIP : {
+"\n" : DEFAULT
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;PREPROCESSOR_OUTPUT&gt; MORE : {
+"\\\n"
+| "\\\r\n"
+| &lt;~[]&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+"/*" : INSIDE_COMMENT
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;INSIDE_COMMENT&gt; TOKEN : {
+"*/" : DEFAULT
+| &lt;~[]&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+ <!-- Token -->
+ <TR>
+  <TD>
+   <PRE>
+&lt;DEFAULT&gt; TOKEN : {
+&lt;ASSIGNMENT_STATEMENT: &lt;IDENTIFIER&gt; &lt;SPEC_EQUALS&gt; (&lt;EXPRESSION&gt; | &lt;INTEGER&gt; | &lt;REAL&gt; ";")+&gt; : {
+| &lt;EXPRESSION: (&lt;INTEGER&gt; | &lt;REAL&gt; | &lt;IDENTIFIER&gt;) (&lt;MATH_SYMBOL&gt; (&lt;INTEGER&gt; | &lt;REAL&gt;))+ (";")?&gt; : {
+| &lt;MULT_COMMENT: "/*" ~[] "*/"&gt;
+| &lt;MATH_SYMBOL: &lt;SPEC_PLUS&gt; | &lt;SPEC_MINUS&gt; | &lt;SPEC_ASTERIX&gt; | &lt;SPEC_SLASH&gt; | &lt;SPEC_PERCENT&gt; | &lt;SPEC_EQUALEQUALS&gt;&gt;
+| &lt;RESERVED: "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const" | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern" | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long" | "register" | "restrict" | "return" | "short" | "signed" | "sizeof" | "static" | "struct" | "switch" | "typedef" | "union" | "unsigned" | "void" | "volatile" | "while"&gt; : {
+| &lt;STRING: "\"" (~["\""])* "\""&gt; : {
+| &lt;INTEGER: &lt;DECIMAL&gt; | &lt;OCTAL&gt; | &lt;HEXIDECIMAL&gt;&gt; : {
+| &lt;REAL: &lt;NODEC&gt; | &lt;NOEXP&gt; | &lt;BOTH&gt;&gt; : {
+| &lt;CHAR: "\'" (&lt;LETTER&gt; | "\\") "\'"&gt; : {
+| &lt;IDENTIFIER: &lt;LETTER&gt; (&lt;LETTER&gt; | &lt;DIGIT&gt; | "_")*&gt; : {
+| &lt;#UPPER: ["A"-"Z"]&gt;
+| &lt;DIGITS: (["0"-"9"])+&gt;
+| &lt;#LOWER: ["a"-"z"]&gt;
+| &lt;#LETTER: &lt;UPPER&gt; | &lt;LOWER&gt;&gt;
+| &lt;DIGIT: ["0"-"9"]&gt;
+| &lt;#DECIMAL: ["1"-"9"] (&lt;DIGIT&gt;)*&gt;
+| &lt;#OCTAL: "0" (["0"-"7"])*&gt;
+| &lt;#HEXIDECIMAL: ("0x" | "0X") (["0"-"9"] | ["A"-"F"] | ["a"-"f"])+&gt;
+| &lt;#NODEC: &lt;INTEGER&gt; ("e" | "E") ("+" | "-")? &lt;INTEGER&gt;&gt;
+| &lt;#NOEXP: &lt;INTEGER&gt; "." &lt;INTEGER&gt;&gt;
+| &lt;#BOTH: &lt;INTEGER&gt; "." &lt;INTEGER&gt; ("e" | "E") ("+" | "-")? &lt;INTEGER&gt;&gt;
+| &lt;SPEC_CYDILLA: "~"&gt;
+| &lt;SPEC_EXCLAMATION: "!"&gt;
+| &lt;SPEC_AT: "@"&gt;
+| &lt;SPEC_PERCENT: "%"&gt;
+| &lt;SPEC_CARROT: "^"&gt;
+| &lt;SPEC_AMPERSAND: "&amp;"&gt;
+| &lt;SPEC_MINUS: "-"&gt;
+| &lt;SPEC_PLUS: "+"&gt;
+| &lt;SPEC_BAR: "|"&gt;
+| &lt;SPEC_SLASH: "/"&gt;
+| &lt;SPEC_COLON: ":"&gt;
+| &lt;SPEC_SEMICOLON: ";"&gt;
+| &lt;SPEC_ASTERIX: "*"&gt;
+| &lt;SPEC_QUESTION: "?"&gt;
+| &lt;SPEC_LESSTHAN: "&lt;"&gt;
+| &lt;SPEC_GREATERTHAN: "&gt;"&gt;
+| &lt;SPEC_DOT: "."&gt;
+| &lt;SPEC_COMMA: ","&gt;
+| &lt;SPEC_SQUOTE: "\'"&gt;
+| &lt;SPEC_LPAREN: "("&gt;
+| &lt;SPEC_RPAREN: ")"&gt;
+| &lt;SPEC_LBRACKET: "["&gt;
+| &lt;SPEC_RBRACKET: "]"&gt;
+| &lt;SPEC_lCURLY: "{"&gt;
+| &lt;SPEC_RCURLY: "}"&gt;
+| &lt;SPEC_DOUBLEPLUS: "++"&gt;
+| &lt;SPEC_DOUBLEMINUS: "--"&gt;
+| &lt;SPEC_SHIFTLEFT: "&lt;&lt;"&gt;
+| &lt;SPEC_SHIFTRIGHT: " &gt;&gt;"&gt;
+| &lt;SPEC_lOE: "&lt;="&gt;
+| &lt;SPEC_GOE: "&gt;="&gt;
+| &lt;SPEC_PLUSEQUALS: "+="&gt;
+| &lt;SPEC_MINUSEQUALS: "-="&gt;
+| &lt;SPEC_MULTEQUALS: "*="&gt;
+| &lt;SPEC_DIVIDEEQUALS: "/="&gt;
+| &lt;SPEC_EQUALEQUALS: "=="&gt;
+| &lt;SPEC_BAREQUALS: "|="&gt;
+| &lt;SPEC_PERCENTEQUALS: "%="&gt;
+| &lt;SPEC_AMPERSANDEQUALS: "&amp;="&gt;
+| &lt;SPEC_CARROTEQUALS: "^="&gt;
+| &lt;SPEC_OREQUALS: "||"&gt;
+| &lt;SPEC_ANDEQUALS: "&amp;&amp;"&gt;
+| &lt;SPEC_NOTEQUAL: "!="&gt;
+| &lt;SPEC_SHIFTLEFTEQUALS: "&lt;&lt;="&gt;
+| &lt;SPEC_SHIFTRIGHTEQUALS: "&gt;&gt;="&gt;
+| &lt;SPEC_QUOTE: "\""&gt;
+| &lt;SPEC_EQUALS: "="&gt;
+}
+
+   </PRE>
+  </TD>
+ </TR>
+</TABLE>
+<H2 ALIGN=CENTER>NON-TERMINALS</H2>
+<TABLE>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod1">Assignment</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE><A HREF="#prod2">Number</A> ( "+" <A HREF="#prod2">Number</A> )*</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod3">Operand</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;INTEGER&gt;</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE><A NAME="prod2">Number</A></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>::=</TD>
+<TD ALIGN=LEFT VALIGN=BASELINE>&lt;DIGIT&gt;</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

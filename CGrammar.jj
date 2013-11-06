@@ -102,11 +102,11 @@ TOKEN : {
  	<ASSIGNMENT_STATEMENT : < IDENTIFIER > <SPEC_EQUALS> (< EXPRESSION > |  (< INTEGER >| < REAL > ";"))   +>
 	  { debugStream.println("ASSIGNMENT STATEMENT: " + matchedToken.image); }
 	| 
-	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";") >
+	< EXPRESSION : (<INTEGER >|<REAL>|<IDENTIFIER>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+  (";")? >
 	 { debugStream.println("EXPRESSION: " + matchedToken.image); }
   |  
     < MULT_COMMENT: "/*" ~[] "*/">
-  | < MATH_SYMBOL : < SPEC_PLUS > | < SPEC_MINUS > | < SPEC_ASTERIX > | < SPEC_SLASH > >
+  | < MATH_SYMBOL : < SPEC_PLUS > | < SPEC_MINUS > | < SPEC_ASTERIX > | < SPEC_SLASH >| <SPEC_PERCENT > | <SPEC_EQUALEQUALS > >
   | < RESERVED : "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const"
                | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern"
                | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long"
@@ -143,7 +143,6 @@ TOKEN : {
   | <SPEC_AMPERSAND : "&" >
   | <SPEC_MINUS : "-" >
   | <SPEC_PLUS :"+" >
-  | <SPEC_EQUALS : "=" >
   | < SPEC_BAR : "|" >
   | <SPEC_SLASH: "/" >
   | <SPEC_COLON: ":" >
@@ -181,9 +180,9 @@ TOKEN : {
   | < SPEC_NOTEQUAL: "!=" >
   | < SPEC_SHIFTLEFTEQUALS: "<<=" >
   | < SPEC_SHIFTRIGHTEQUALS: ">>=" >
-  //| < SPEC_POUND: "#" >
   | < SPEC_QUOTE: "\"" >
-  
+  | <SPEC_EQUALS : "=" >
+   //| < SPEC_POUND: "#" >
 
 
 
