@@ -1,0 +1,20 @@
+ASSIGNMENT STATEMENT: x=7+3;
+EXPRESSION: 6+3/4;
+EXPRESSION: n%2==0;
+Identifier: main
+RESERVED token: int
+Identifier: n
+Identifier: printf
+STRING: "Enter an integer\n"
+Identifier: scanf
+STRING: "%d"
+Identifier: n
+RESERVED token: if
+EXPRESSION: n%2==0
+Identifier: printf
+STRING: "Even\n"
+RESERVED token: else
+Identifier: printf
+STRING: "Odd\n"
+RESERVED token: return
+INTEGER: 0
