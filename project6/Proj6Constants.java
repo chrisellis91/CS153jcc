@@ -19,35 +19,39 @@ public interface Proj6Constants {
   /** RegularExpression Id. */
   int STRING = 7;
   /** RegularExpression Id. */
-  int INTEGER = 8;
+  int SPECIAL_SYMBOL = 8;
   /** RegularExpression Id. */
-  int REAL = 9;
+  int INTEGER = 9;
   /** RegularExpression Id. */
-  int CHAR = 10;
+  int REAL = 10;
   /** RegularExpression Id. */
-  int IDENTIFIER = 11;
+  int CHAR = 11;
   /** RegularExpression Id. */
-  int UPPER = 12;
+  int IDENTIFIER = 12;
   /** RegularExpression Id. */
-  int DIGITS = 13;
+  int UPPER = 13;
   /** RegularExpression Id. */
-  int LOWER = 14;
+  int DIGITS = 14;
   /** RegularExpression Id. */
-  int LETTER = 15;
+  int LOWER = 15;
   /** RegularExpression Id. */
-  int DIGIT = 16;
+  int LETTER = 16;
   /** RegularExpression Id. */
-  int DECIMAL = 17;
+  int DIGIT = 17;
   /** RegularExpression Id. */
-  int OCTAL = 18;
+  int DECIMAL = 18;
   /** RegularExpression Id. */
-  int HEXIDECIMAL = 19;
+  int OCTAL = 19;
   /** RegularExpression Id. */
-  int NODEC = 20;
+  int HEXIDECIMAL = 20;
   /** RegularExpression Id. */
-  int NOEXP = 21;
+  int NODEC = 21;
   /** RegularExpression Id. */
-  int BOTH = 22;
+  int NOEXP = 22;
+  /** RegularExpression Id. */
+  int BOTH = 23;
+  /** RegularExpression Id. */
+  int SPEC = 24;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -64,6 +68,7 @@ public interface Proj6Constants {
     "<MULT_COMMENT>",
     "<RESERVED>",
     "<STRING>",
+    "<SPECIAL_SYMBOL>",
     "<INTEGER>",
     "<REAL>",
     "<CHAR>",
@@ -79,8 +84,7 @@ public interface Proj6Constants {
     "<NODEC>",
     "<NOEXP>",
     "<BOTH>",
-    "\"=\"",
-    "\";\"",
+    "<SPEC>",
   };
 
 }
