@@ -64,6 +64,12 @@ SKIP :
     <IGNORE : [" ", ",", "\r", "\n"]>     
 }
 
+TOKEN:  //Psuedo tokens
+{	< EXPRESSION : (<INTEGER >|<REAL>) (< MATH_SYMBOL > (< INTEGER >|< REAL>))+ >
+	 { debugStream.println("EXPRESSION: " + matchedToken.image); } 
+}
+
+
 
 TOKEN:
 {
@@ -87,6 +93,7 @@ TOKEN : {
   
 
    < MULT_COMMENT: "/*" ~[] "*/">
+ | < MATH_SYMBOL : "+" | "-" | "*" | "//" >
   | < RESERVED : "auto" | "_Bool" | "break" | "case" | "char" | "_Complex" | "const"
                | "continue" | "default" | "do" | "double" | "else" | "enum" | "extern"
                | "float" | "for" | "goto" | "if" | "_Imaginary" | "inline" | "int" | "long"
